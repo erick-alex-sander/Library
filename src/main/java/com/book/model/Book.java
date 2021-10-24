@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,14 +17,15 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@Column
+	@Column(nullable=false)
 	private String title;
 	
 	@Column
 	private String author;
 	
-	@Column
-	private int price;
+	@ManyToOne
+	@JoinColumn(name="genre_id")
+	private Genre genre;
 
 	public long getId() {
 		return id;
@@ -48,13 +51,15 @@ public class Book {
 		this.author = author;
 	}
 
-	public int getPrice() {
-		return price;
+	public Genre getGenre() {
+		return genre;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	public void setGenre(Genre genre) {
+		this.genre = genre;
 	}
+
+	
 	
 	
 }

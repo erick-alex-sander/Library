@@ -58,7 +58,6 @@ public class BookController {
 		Book _book = bookEdit.get();
 		_book.setTitle(book.getTitle());
 		_book.setAuthor(book.getAuthor());
-		_book.setPrice(book.getPrice());
 		return new ResponseEntity<>(bookRepository.save(_book), HttpStatus.OK);
 	}
 	
